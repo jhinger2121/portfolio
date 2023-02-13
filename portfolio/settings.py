@@ -26,7 +26,7 @@ SECRET_KEY = 'jj&+1@hge2)og7*x+fv8!^om6p6aqu4_ly%de-4$z2ct6^ui#r'
 DEBUG = True
 
 # ALLOWED_HOSTS = []
-ALLOWED_HOSTS = ['jhinjerportfolio.herokuapp.com']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'base',
     'crispy_forms',
     'ckeditor',
+
+    'rest_framework',
 ]
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 CKEDITOR_UPLOAD_PATH = "uploads/"
@@ -137,3 +139,14 @@ STATICFILES_DIRS = [
 
 #  Add configuration for static files storage using whitenoise
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+REST_FRAMEWORK = {
+    'DEFAULT_THROTTLE_CLASSES': [
+        'rest_framework.throttling.AnonRateThrottle',
+        'rest_framework.throttling.UserRateThrottle'
+    ],
+    'DEFAULT_THROTTLE_RATES': {
+        'anon': '200/day',
+        'user': '1000/day'
+    }
+}

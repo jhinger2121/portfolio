@@ -37,6 +37,10 @@
 }
 
 /* Home.html style start here */
+
+.person-img img{
+    width: 100px;
+}
 .home-heading{
     padding: 3rem;
     text-align: center;

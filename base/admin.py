@@ -1,5 +1,5 @@
 from django.contrib import admin
-from base.models import Blog, Contact
+from base.models import Contact, Entry
 
 
 class NotesAdmin(admin.ModelAdmin):
@@ -8,5 +8,6 @@ class NotesAdmin(admin.ModelAdmin):
 
     prepopulated_fields = {'slug': ('title',)}
 
-admin.site.register(Blog)
+
 admin.site.register(Contact)
+admin.site.register(Entry)

@@ -1,0 +1,165 @@
+
+body{
+    margin: 0;
+    padding: 0;
+    
+}
+.navbar-brand {
+    font-size: 1.5em;
+}
+.nav-link {
+    color: white !important;
+    font-size: 1em;
+    font-weight: 500;
+}
+.nav-link:hover {
+    color: rgb(173, 173, 173) !important;
+}
+
+.all-post-btn{
+    color: #795548;
+    font-size: 1.2em;
+    font-weight: 500;
+    margin-top: 50px !important;
+    margin-bottom: 50px !important;
+}
+
+.index-intro {
+    margin-top: 70px;
+    font-family: 'Roboto', sans-serif;
+    margin-bottom: 100px;
+}
+.intro-right h1{
+    font-weight: 10;
+    letter-spacing: 3px;
+    color: rgb(53, 53, 53);
+}
+.intro-right p{
+    color:rgb(82, 82, 82);
+    font-size: 1.1em;
+}
+.intro-left{
+    text-align: center;
+}
+.intro-left img {
+    border-radius: 50%;
+}
+.intro-left h2{
+    letter-spacing: 3px;
+    margin-top: 50px !important;
+}
+.intro-left p:first-child{
+    color: rgb(109, 109, 109);
+}
+
+.index-intro .my-social-media {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: center;
+    
+}
+.my-social-media a{
+    color: #7a5649;
+}
+.my-social-media i{
+    font-size: 1.8em;
+}
+.my-social-media p{
+    margin-right: 10px;
+}
+
+
+.intro-dec {
+    display: flex;
+    margin-top: 30px;
+}
+.intro-dec h3 {
+    font-weight: bold;
+}
+.intro-dec .intro-interests {
+    margin-right: 150px
+}
+
+.my-edu {
+    display: flex !important;
+}
+.my-edu svg{
+    margin-right: 10px;
+}
+.my-edu-info span:first-child {
+    font-weight: bold;
+}
+.my-edu-info span:last-child {
+    color: rgb(61, 61, 61);
+}
+.my-edu svg{
+    margin-top: 10px;
+}
+
+
+.post-container{
+    padding-top: 50px;
+    background-color: #eaf2fa;
+}
+.post-se h1{
+    font-weight: 200;
+
+}
+.post a{
+    color: black;
+    font-weight: bold;
+}
+.post a:hover {
+    color: #795548;
+}
+.post .p-headline{
+    font-size: 0.8em;
+
+}
+.project {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+.project:last-child {
+    margin-bottom: 50px;
+}
+.project-img:last-child {
+    margin-bottom: 50px !important;
+}
+.p-by {
+    color:rgb(109, 109, 109)
+}
+.p-button {
+    color: #795548 !important;
+    border: 1px solid #795548;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.8em;
+}
+
+#skills{
+    padding-top: 50px;
+    padding-bottom: 50px;
+    background-color: #eaf2fa;
+    text-align: center;
+}
+.skill-heading{
+    font-weight: 400;
+    letter-spacing: 3px;
+    text-align: center;
+    margin-bottom: 30px;
+}
+#skills .col-md-4{
+    margin-top: 20px;
+}
+#skills h3{
+    font-weight: 300;
+}
+#skills p{
+    color: rgb(124, 124, 124);
+}
+.fab-icon {
+    font-size: 3.5em;
+    color: #795548;
+}

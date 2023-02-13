@@ -1,3 +1,17 @@
+/* *{
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto Slab', serif;
+}
+body {
+    background-color: #fdfbf9 !important;
+}
+h1, h2, h3,h4, h5, h6 {
+    font-family: 'Alegreya Sans', sans-serif;
+}
+p{
+    font-family: 'Open Sans', sans-serif;
+} */
 
 body{
     margin: 0;
@@ -99,11 +113,16 @@ body{
 
 .post-container{
     padding-top: 50px;
-    background-color: #eaf2fa;
+    background-color: #f1eae3;
 }
 .post-se h1{
     font-weight: 200;
 
+}
+.post {
+    border: 2px solid black;
+    padding: 18px;
+    border-radius: 10px;
 }
 .post a{
     color: black;
@@ -162,4 +181,38 @@ body{
 .fab-icon {
     font-size: 3.5em;
     color: #795548;
+}
+
+
+
+.person-img {
+    width: 400px;
+    height: auto;
+    border-radius: 50%;
+    border: 2px solid #a9534f;
+    /* background-image: url("../img/personImage.jpg"); */
+}
+.my-intro h1 {
+    font-weight: 100;
+    margin-bottom: 40px;
+    font-size: 3.2em;
+}
+.my-intro p {
+    font-size: 1.5em;
+    color:rgb(124, 124, 124);
+    margin-bottom: 40px;
+}
+.my-intro .intro-link {
+    display: flex !important;
+    flex-direction: row !important;
+    
+}
+.my-intro .intro-link a{
+    color: #a9534f;
+}
+.my-intro .intro-link i{
+    font-size: 1.5em;
+}
+.my-intro .intro-link p{
+    margin-right: 20px;
 }

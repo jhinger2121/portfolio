@@ -1,52 +1,60 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
+from django.core.exceptions import PermissionDenied
 
-from base.forms import BlogForm, ContactForm
-from base.models import Blog
+from base.models import Entry, MyEntrySerializer, ContactSerializer
 
+from rest_framework import status
+from rest_framework.decorators import api_view, throttle_classes
+from rest_framework.response import Response
+from rest_framework.throttling import UserRateThrottle, AnonRateThrottle
 
-def index(request):
-    posts = Blog.objects.all()[:10]
-    return render(request, 'base/index.html', {'posts': posts})
+@api_view(['GET', 'POST'])
+@throttle_classes([UserRateThrottle, AnonRateThrottle])
+def all_entries(request):
+    if request.method == 'GET':
+        entries = Entry.objects.all()
+        serializer = MyEntrySerializer(entries, many=True)
+        return Response(serializer.data)
+    
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            serializer = MyEntrySerializer(data=request.data)
+            if serializer.is_valid():
+                serializer.save()
+                return Response(serializer.data, status=status.HTTP_201_CREATED)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    else:
+        raise PermissionDenied()
+    
+@api_view(['GET', 'PUT', 'DELETE'])
+@throttle_classes([UserRateThrottle, AnonRateThrottle])
+def entry_detail(request, post_id):
+    post = get_object_or_404(Entry, id=post_id)
+    if request.method == 'GET':
+        serializer = MyEntrySerializer(post)
+        return Response(serializer.data)
+    
+    if request.user.is_authanticated:
+        if request.method == 'DELETE':
+            post.delete()
+            return Response(status=status.HTTP_204_NO_CONTENT)
+        
+        elif request.method == 'PUT':
+            serializer = MyEntrySerializer(post, data=request.data)
+            if serializer.is_valid():
+                serializer.save()
+                return Response(serializer.data)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    else:
+        raise PermissionDenied()
 
-
-def projects(request):
-    return render(request, 'base/project.html', {})
-
-
-def all_posts(request):
-    all_posts = Blog.objects.all()
-    return render(request, 'base/posts.html', {'posts': all_posts})
-
-
-def skills(request):
-    return render(request, 'base/skills.html', {})
-
-
-def create_blog(request):
-    form = BlogForm()
-    if request.method == 'POST' or None:
-        form = BlogForm(request.POST)
-        if form.is_valid():
-            form.save()
-            # messages.success(request, 'Notes detail created.')
-            return HttpResponse("success")
-            # return redirect(reverse('notes:detail', args=[form.slug, form.id]))
-
-    dictionary = {'form': form}
-    return render(request, 'base/create_blog.html', dictionary)
-
-
-def create_contact_us(request):
-    form = ContactForm()
-    if request.method == 'POST' or None:
-        form = ContactForm(request.POST)
-        if form.is_valid():
-            form.save()
-            # messages.success(request, 'Notes detail created.')
-            return HttpResponse("success")
-            # return redirect(reverse('notes:detail', args=[form.slug, form.id]))
-
-    dictionary = {'form': form}
-    return render(request, 'base/create_contact_us.html', dictionary)
-
+@api_view(['POST'])
+@throttle_classes([UserRateThrottle, AnonRateThrottle])
+def contact_me(request):
+    if request.method == 'POST':
+        serializer = ContactSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
